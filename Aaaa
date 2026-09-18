@@ -1,0 +1,565 @@
+body {
+  background:
+      linear-gradient(
+          rgba(255,255,255,0.92),
+          rgba(255,255,255,0.92)
+      ),
+      url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1400');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.container {
+  width: 95%;
+  margin: 35px auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 38px;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+h1::before {
+  content: "🥗 ";
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(
+      to right,
+      transparent,
+      #2e9f44,
+      transparent
+  );
+  margin-bottom: 25px;
+}
+
+.search-box,
+.filter-box {
+  height: 50px;
+  min-width: 280px;
+  border: 1px solid #dbe3ea;
+  border-radius: 14px;
+  outline: none;
+  padding: 0 16px;
+  margin: 0 12px 22px 0;
+  background: white;
+  font-size: 14px;
+}
+
+.search-box:focus,
+.filter-box:focus {
+  border-color: #2e9f44;
+  box-shadow: 0 0 0 4px rgba(46,159,68,.15);
+}
+
+table {
+  width: 100%;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  border-collapse: collapse;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+th {
+  background: linear-gradient(
+      90deg,
+      #061b34,
+      #0b2a4a
+  );
+  color: white;
+  padding: 16px;
+  font-size: 14px;
+  letter-spacing: .5px;
+}
+
+td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #edf2f7;
+}
+
+tr {
+  transition: .3s;
+}
+
+tr:hover {
+  background: #f4fff5;
+  transform: scale(1.002);
+}
+
+tr:nth-child(even) {
+  background: #fafdfb;
+}
+
+.edit,
+.profile-btn,
+.more {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.edit:hover,
+.profile-btn:hover,
+.more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(37,99,235,.25);
+}
+
+.approve {
+  background: #2e9f44;
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.approve:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(46,159,68,.25);
+}
+
+.reject,
+.delete,
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.reject:hover,
+.delete:hover,
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(239,68,68,.25);
+}
+
+.cancel-btn {
+  background: #64748b;
+  color: white;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+}
+
+.pending {
+  background: #fff7d6;
+  color: #b45309;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+.approved {
+  background: #dcfce7;
+  color: #166534;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
+
+.popup {
+  width: 420px;
+  background: white;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.25);
+  position: relative;
+  text-align: center;
+}
+
+.popup {
+  width: 450px;
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,.20);
+  position: relative;
+  animation: popupAnimation .35s ease;
+}
+
+.popup h2 {
+  color: #0f172a;
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+.popup h2::before {
+  content: "👤 ";
+}
+
+.popup p {
+  background: #f8fafc;
+  margin: 12px 0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  text-align: left;
+  color: #334155;
+  font-size: 15px;
+  border-left: 4px solid #2e9f44;
+}
+
+.popup p b {
+  color: #0f172a;
+  display: inline-block;
+  min-width: 120px;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.close-btn:hover {
+  background: #dc2626;
+  transform: rotate(90deg);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  backdrop-filter: blur(3px);
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-weight: 600;
+}
+
+@keyframes popupAnimation {
+
+  from {
+      opacity: 0;
+      transform: translateY(-30px) scale(.9);
+  }
+
+  to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+  }
+
+}
+
+.close,
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close:hover,
+.close-btn:hover {
+  background: #dc2626;
+}
+
+@media(max-width:768px){
+
+  .container {
+      width: 98%;
+      overflow-x: auto;
+  }
+
+  table {
+      min-width: 900px;
+  }
+}
+
+<div class="container">
+
+  <h1>Feedback Details</h1>
+  <br><br>
+
+  <hr>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>User Name</th>
+        <th>Feedback</th>
+        <th>Posted Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngIf="isFeedLoading">
+        <td colspan="5" class="loading-cell">
+          <div class="loader"></div>
+          <p>Loading Feedbacks...</p>
+        </td>
+      </tr>
+
+      <tr *ngIf="feedbacks.length === 0 && !isFeedLoading">
+        <td colspan="5">No data found</td>
+      </tr>
+
+      <tr *ngFor="let item of paginatedFeedbacks; let i = index">
+        <td>{{ ((currentPage - 1) * pageSize) + i + 1 }}</td>
+
+        <td>
+          {{ item.user?.username }}
+        </td>
+
+        <td>
+          {{ item.feedbackText }}
+        </td>
+
+        <td>
+          {{ item.date | date:'yyyy-MM-dd' }}
+        </td>
+
+        <td>
+          <button class="profile-btn" (click)="showProfile(item)">
+            Show Profile
+          </button>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="feedbacks.length > 0">
+
+    <button
+      (click)="prevPage()"
+      [disabled]="currentPage === 1">
+      Previous
+    </button>
+
+    <span class="page-info">
+      Page {{ currentPage }} of {{ totalPages }}
+    </span>
+
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages">
+      Next
+    </button>
+
+  </div>
+
+</div>
+
+<div class="overlay" *ngIf="selectedUser">
+
+  <div class="popup">
+
+    <button class="close-btn" (click)="closeProfile()">X</button>
+
+    <h2>User Profile</h2>
+
+    <p>
+      <b>Email:</b>
+      {{ selectedUser.email || selectedUser.user?.email }}
+    </p>
+
+    <p>
+      <b>Username:</b>
+      {{ selectedUser.username || selectedUser.userName || selectedUser.user?.username }}
+    </p>
+
+    <p>
+      <b>Mobile Number:</b>
+      {{ selectedUser.mobileNumber || selectedUser.user?.mobileNumber }}
+    </p>
+
+  </div>
+
+</div>
+
+
+import { Component, OnInit } from '@angular/core';
+import { FeedbackService } from '../../services/feedback.service';
+import { Feedback } from 'src/app/models/feedback.model';
+
+@Component({
+  selector: 'app-adminviewfeedback',
+  templateUrl: './adminviewfeedback.component.html',
+  styleUrls: ['./adminviewfeedback.component.css']
+})
+export class AdminviewfeedbackComponent implements OnInit {
+
+  feedbacks: Feedback[] = [];
+  selectedUser: any = null;
+  isFeedLoading: boolean = false;
+
+  // Pagination
+  currentPage: number = 1;
+  pageSize: number = 10;
+
+  constructor(private feedbackService: FeedbackService) { }
+
+  ngOnInit(): void {
+    this.loadFeedbacks();
+  }
+
+  loadFeedbacks(): void {
+    this.isFeedLoading = true;
+
+    this.feedbackService.getFeedbacks().subscribe({
+      next: (data: any) => {
+        this.feedbacks = data;
+        this.isFeedLoading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.isFeedLoading = false;
+      }
+    });
+  }
+
+  showProfile(item: any): void {
+    this.selectedUser = item.user || item;
+  }
+
+  closeProfile(): void {
+    this.selectedUser = null;
+  }
+
+  // Returns only 10 records for the current page
+  get paginatedFeedbacks(): Feedback[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    return this.feedbacks.slice(startIndex, startIndex + this.pageSize);
+  }
+
+  // Calculates total pages
+  get totalPages(): number {
+    return Math.ceil(this.feedbacks.length / this.pageSize);
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+}
+
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { AdminviewfeedbackComponent } from './adminviewfeedback.component';
+
+describe('AdminviewfeedbackComponent', () => {
+  let component: AdminviewfeedbackComponent;
+  let fixture: ComponentFixture<AdminviewfeedbackComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ AdminviewfeedbackComponent ],
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule, FormsModule],
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AdminviewfeedbackComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  fit('Frontend_should_create_adminviewfeedback_component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  fit('Frontend_should_contain_feedback_details_heading_in_the_adminviewfeedback_component', () => {
+    const componentHTML = fixture.debugElement.nativeElement.outerHTML;
+    expect(componentHTML).toContain('Feedback Details');
+  });
+});
+
